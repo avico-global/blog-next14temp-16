@@ -146,7 +146,7 @@ export default function Footer({
             {/* About Section */}
             <div className="space-y-4">
               <h4 className="font-bold text-lg mb-6">About Us</h4>
-              <p className="text-gray-400 leading-relaxed">{about_me?.value}</p>
+              <p className="text-gray-400 leading-relaxed ">{about_me?.value}</p>
             </div>
 
             {/* Quick Links */}
@@ -207,7 +207,7 @@ export default function Footer({
                 {categories?.map((item, index) => (
                   <Link
                     key={index}
-                    href={`/${sanitizeUrl(item.title)}`}
+                    href={`/category/${sanitizeUrl(item.title)}`}
                     title={item.title}
                     className={cn(
                       "block text-white hover:text-white rounded-xl bg-gray-800  hover:bg-gray-700 w-fit py-1 px-4 transition-colors",

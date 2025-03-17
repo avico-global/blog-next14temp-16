@@ -61,9 +61,7 @@ export default function Home({
               image={
                 item.image ? `${imagePath}/${item.image}` : "/no-image.png"
               }
-              href={`/${encodeURI(
-                sanitizeUrl(item.article_category)
-              )}/${encodeURI(sanitizeUrl(item.title))}`}
+              href={`/${encodeURI(sanitizeUrl(item.title))}`}
               imageHeight="h-full"
               imageTitle={item.imageTitle || item.title || "Blog Image Title"}
               altImage={item.altImage || item.tagline || "Article Thumbnail"}
@@ -138,7 +136,7 @@ export default function Home({
                 {categories?.slice(0, 4).map((category, index) => (
                   <Link
                     key={index}
-                    href={`/${sanitizeUrl(category.title)}`}
+                    href={`/category/${sanitizeUrl(category.title)}`}
                     title={category.title}
                     className="relative group overflow-hidden h-66"
                   >
@@ -185,7 +183,7 @@ export default function Home({
                             <Link
                               className="w-fit text-sm font-semibold bg-background4 hover:bg-background1 text-black py-2 px-6 rounded-xl transition-colors"
                               title={item.article_category}
-                              href={`/${
+                              href={`/category/${
                                 sanitizeUrl(item.article_category) || "#"
                               }`}
                             >
@@ -196,9 +194,7 @@ export default function Home({
                           </div>
 
                           <Link
-                            href={`/${
-                              sanitizeUrl(item.article_category) || "#"
-                            }`}
+                           href={`/${sanitizeUrl(item?.title)}`}
                             title={item.title}
                             className="group"
                           >
@@ -208,9 +204,7 @@ export default function Home({
                           </Link>
 
                           <Link
-                            href={`/${
-                              sanitizeUrl(item.article_category) || "#"
-                            }`}
+                           href={`/${sanitizeUrl(item?.title)}`}
                             title={item.tagline}
                             className="group"
                           >
@@ -227,9 +221,7 @@ export default function Home({
                         {/* Image Section */}
                         <div className="relative">
                           <Link
-                            href={`/${
-                              sanitizeUrl(item.article_category) || "#"
-                            }`}
+                           href={`/${sanitizeUrl(item?.title)}`}
                             title={item.imageTitle}
                             className="block relative aspect-[3/3] w-full md:w-3/4 mt-0 md:-mt-80 overflow-hidden rounded-2xl group"
                           >
@@ -329,6 +321,7 @@ export default function Home({
                   "https://instagram.com",
                 ],
               },
+              
               {
                 "@type": "ItemList",
                 url: `https://${domain}`,

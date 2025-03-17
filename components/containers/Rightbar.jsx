@@ -37,9 +37,7 @@ export default function Rightbar({
           >
             <Link
               title={item.title || "Article"}
-              href={`/${encodeURI(
-                sanitizeUrl(item.article_category)
-              )}/${encodeURI(sanitizeUrl(item.title))}`}
+              href={`/${encodeURI(sanitizeUrl(item.title))}`}
               className="overflow-hidden rounded-lg relative min-h-20 w-24 bg-gray-100"
             >
               <Image
@@ -58,9 +56,7 @@ export default function Rightbar({
             <div className="flex flex-col justify-between">
               <Link
                 title={item.title || "Article Link"}
-                href={`/${encodeURI(
-                  sanitizeUrl(item.article_category)
-                )}/${encodeURI(sanitizeUrl(item.title))}`}
+                href={`/${encodeURI(sanitizeUrl(item.title))}`}
               >
                 <p className="font-semibold text-lg text-gray-800 leading-snug group-hover:text-gray-600 transition-colors">
                   {item.title}

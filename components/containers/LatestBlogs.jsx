@@ -29,7 +29,7 @@ export default function LatestBlogs({ blogs, imagePath }) {
               image={
                 item.image ? `${imagePath}/${item.image}` : "/no-image.png"
               }
-              href={`/${sanitizeUrl(item.article_category)}/${sanitizeUrl(
+              href={`/${sanitizeUrl(
                 item?.title
               )}`}
               imageTitle={item.imageTitle}

@@ -33,7 +33,7 @@ export default function MustRead({ blog_list = [], imagePath }) {
                     <div className="flex items-center gap-4 text-gray-600 flex-wrap">
                       <Link
                         className="w-fit text-sm font-semibold bg-background4 hover:bg-background1 text-black py-2 px-6 rounded-xl transition-colors"
-                        href={`/${sanitizeUrl(item.article_category) || "#"}`}
+                        href={`/category/${sanitizeUrl(item.article_category) || "#"}`}
                       >
                         {item.article_category}
                       </Link>
@@ -42,7 +42,7 @@ export default function MustRead({ blog_list = [], imagePath }) {
                     </div>
 
                     <Link
-                      href={`/${sanitizeUrl(item.article_category) || "#"}`}
+                      href={`/${sanitizeUrl(item?.title)}`}
                       className="group"
                     >
                       <h3 className="font-bold text-2xl md:text-4xl lg:text-5xl leading-tight group-hover:text-gray-500 duration-200 transition-colors">
@@ -51,7 +51,7 @@ export default function MustRead({ blog_list = [], imagePath }) {
                     </Link>
 
                     <Link
-                      href={`/${sanitizeUrl(item.article_category) || "#"}`}
+                      href={`/${sanitizeUrl(item?.title)}`}
                       className="group"
                     >
                       <h3 className="font-normal text-lg md:text-xl leading-tight group-hover:text-gray-500 duration-200 transition-colors">
@@ -67,7 +67,7 @@ export default function MustRead({ blog_list = [], imagePath }) {
                   {/* Image Section */}
                   <div className="relative">
                     <Link
-                      href={`/${sanitizeUrl(item.article_category) || "#"}`}
+                      href={`/${sanitizeUrl(item?.title)}`}
                       title={item.imageTitle}
                       className="block relative aspect-[3/3] w-full md:w-3/4 mt-0 md:-mt-80 overflow-hidden rounded-2xl group"
                     >

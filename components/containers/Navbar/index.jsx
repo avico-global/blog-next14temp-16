@@ -124,7 +124,7 @@ export default function Navbar({
                       {categories.map((category, index) => (
                         <Link
                           key={index}
-                          href={`/${encodeURI(sanitizeUrl(category.title))}`}
+                          href={`/category/${encodeURI(sanitizeUrl(category.title))}`}
                           className="group relative overflow-hidden"
                         >
                           <div className="relative h-48 rounded-2xl overflow-hidden">
@@ -215,9 +215,7 @@ export default function Navbar({
                         <Link
                           key={index}
                           title={item.title}
-                          href={`/${sanitizeUrl(
-                            item.article_category
-                          )}/${sanitizeUrl(item?.title)}`}
+                          href={`/${sanitizeUrl(item?.title)}`}
                         >
                           <div className="group hover:bg-gradient-to-r hover:from-yellow-50 hover:to-transparent p-4 rounded-2xl transition-all">
                             <div className="flex items-center gap-4">
