@@ -45,7 +45,10 @@ export default function Categories({
   useEffect(() => {
     const currentPath = router.asPath;
 
-    if (categoryPage && (categoryPage.includes("%20") || categoryPage.includes(" "))) {
+    if (
+      categoryPage &&
+      (categoryPage.includes("%20") || categoryPage.includes(" "))
+    ) {
       const newCategory = categoryPage.replace(/%20/g, "-").replace(/ /g, "-");
       router.replace(`/${newCategory}`);
     }
@@ -61,15 +64,91 @@ export default function Categories({
   // Find the selected category
   const selectedCategory = categories?.find(
     (cat) =>
-      cat.title.toLowerCase() === categoryPage?.replaceAll("-", " ").toLowerCase()
+      cat.title.toLowerCase() ===
+      categoryPage?.replaceAll("-", " ").toLowerCase()
   );
 
   if (!selectedCategory) return null;
 
+  console.log(blog_list);
+
+  // Log the current category for debugging
+  console.log(
+    "Current category:",
+    categoryPage?.replaceAll("-", " ").toLowerCase()
+  );
+
+  // Inspect the first blog post to understand its structure
+  if (blog_list && blog_list.length > 0) {
+    console.log(
+      "First blog post structure:",
+      JSON.stringify(blog_list[0], null, 2)
+    );
+    // Check if it has category-related fields
+    console.log("Has categories?", !!blog_list[0].categories);
+    console.log("Has category?", !!blog_list[0].category);
+    console.log("Has article_category?", !!blog_list[0].article_category);
+    console.log("Has tags?", !!blog_list[0].tags);
+  }
+
+  // Get the category ID from the selected category
+  const categoryId = selectedCategory?.id;
+  console.log("Selected category ID:", categoryId);
+
+  // Normalize the current category name
+  const categoryNameLower = categoryPage?.replaceAll("-", " ").toLowerCase();
+
+  // Filter blog posts based on the actual structure we see in your API response
   const filteredBlogList = blog_list.filter((item) => {
-    const searchContent = sanitizeUrl(categoryPage);
-    return sanitizeUrl(item.article_category) === searchContent;
+    // Match by article_category if present
+    if (item.article_category) {
+      const itemCategory =
+        typeof item.article_category === "string"
+          ? item.article_category.toLowerCase()
+          : "";
+      if (itemCategory === categoryNameLower) {
+        return true;
+      }
+    }
+
+    // Since we can see from your API response that these are piping-related posts,
+    // let's try to match against the title which appears to contain the topic
+    if (item.title) {
+      const titleLower = item.title.toLowerCase();
+
+      // Extract the main topics from the title
+      // For example: "Commercial Piping", "Smart Piping" etc.
+      const categoryPhrases = ["commercial piping", "smart piping", "piping"];
+
+      // If the current category is one of these phrases, check if the title contains it
+      if (
+        categoryPhrases.includes(categoryNameLower) &&
+        titleLower.includes(categoryNameLower)
+      ) {
+        return true;
+      }
+
+      // Alternatively, if the category name contains the word "commercial" or "smart"
+      // and the title contains that word too, consider it a match
+      const categoryWords = categoryNameLower.split(" ");
+      const keyWordsToMatch = ["commercial", "smart", "piping"];
+
+      for (const word of categoryWords) {
+        if (keyWordsToMatch.includes(word) && titleLower.includes(word)) {
+          return true;
+        }
+      }
+    }
+
+    // No match
+    return false;
   });
+
+  console.log("Filtered posts:", filteredBlogList.length);
+  console.log(
+    "Filtered posts titles:",
+    filteredBlogList.map((post) => post.title)
+  );
 
   return (
     page?.enable && (
@@ -90,12 +169,15 @@ export default function Categories({
             name="description"
             content={meta?.description.replaceAll(
               "##category##",
-              category?.replaceAll("-", " ")
+              categoryPage?.replaceAll("-", " ")
             )}
           />
           <link rel="author" href={`https://www.${domain}`} />
           <link rel="publisher" href={`https://www.${domain}`} />
-          <link rel="canonical" href={`https://www.${domain}/${categoryPage}`} />
+          <link
+            rel="canonical"
+            href={`https://www.${domain}/${categoryPage}`}
+          />
           <meta name="theme-color" content="#008DE5" />
           <link rel="manifest" href="/manifest.json" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -128,54 +210,122 @@ export default function Categories({
         </Head>
 
         {/* Navbar */}
-            <Navbar
-              logo={logo}
-              nav_type={nav_type}
-              category={categoryPage}
-              imagePath={imagePath}
-              blog_list={blog_list}
-              categories={categories}
-              contact_details={contact_details}
-            />
+        <Navbar
+          logo={logo}
+          nav_type={nav_type}
+          category={categoryPage}
+          imagePath={imagePath}
+          blog_list={blog_list}
+          categories={categories}
+          contact_details={contact_details}
+        />
 
         {/* Hero Section with Category Title and Image */}
-        <FullContainer className="bg-theme py-20">
+        <FullContainer className="bg-gradient-to-br from-theme to-theme-dark py-24 relative overflow-hidden">
+          {/* Decorative background elements */}
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+          </div>
+
           <Container>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
               <div className="text-left space-y-6">
-                <div className="inline-block px-4 py-2 bg-background2 text-black rounded-full text-sm font-medium mb-2">
-                  Category
+                <div className="inline-flex items-center px-4 py-2 bg-background2/90 text-black rounded-full text-sm font-medium backdrop-blur-sm">
+                  <span className="w-2 h-2 bg-black rounded-full mr-2"></span>
+                  Exploring Category
                 </div>
+
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold capitalize leading-tight">
                   {categoryPage?.replaceAll("-", " ")}
+                  <span className="block mt-2 text-background2/90 text-2xl md:text-3xl font-medium">
+                    Articles & Resources
+                  </span>
                 </h1>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit
-                  Asperiores non dolor officiis eaque corporis.
+
+                <p className=" text-lg max-w-lg">
+                  Discover our collection of insightful articles, guides, and
+                  resources about {categoryPage?.replaceAll("-", " ")}.
                 </p>
-                <Breadcrumbs breadcrumbs={breadcrumbs} className="mt-6" />
+
+                <Breadcrumbs breadcrumbs={breadcrumbs} className="mt-8" />
+
+                <div className="pt-4">
+                  <Link
+                    href="#articles"
+                    className="inline-flex items-center px-6 py-3 bg-background2 text-black rounded-lg font-medium hover:bg-background2/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    Explore Articles
+                    <svg
+                      className="w-5 h-5 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </Link>
+                </div>
               </div>
+
               <div className="relative group">
-                <div className="overflow-hidden relative h-[450px] rounded-2xl shadow-xl">
+                <div className="overflow-hidden relative h-[480px] rounded-2xl shadow-2xl">
                   <Image
                     title={categoryPage?.replaceAll("-", " ")}
                     src={`${imagePath}/${selectedCategory.image}`}
                     fill={true}
-                    loading="lazy"
+                    priority
                     alt={`${categoryPage?.replaceAll("-", " ")} cover`}
-                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    quality={90}
+                    quality={95}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20 group-hover:opacity-0 transition-opacity duration-700"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 opacity-60 group-hover:opacity-30 transition-opacity duration-700"></div>
+
+                  {/* Category stats overlay */}
+                  <div className="absolute bottom-8 left-8 right-8 bg-black/50 backdrop-blur-md rounded-xl p-4 transform transition-all duration-500 group-hover:translate-y-0 opacity-90">
+                    <div className="flex items-center justify-between text-white">
+                      <div>
+                        <span className="block text-sm font-medium text-background2">
+                          In this category
+                        </span>
+                        <span className="text-xl font-bold">
+                          {filteredBlogList.length} Articles
+                        </span>
+                      </div>
+                      <div className="h-8 w-px bg-white/20 mx-4"></div>
+                      <div>
+                        <span className="block text-sm font-medium text-background2">
+                          Updated
+                        </span>
+                        <span className="text-md">
+                          {dayjs().format("MMM YYYY")}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
                 {/* Decorative elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-100 rounded-full opacity-50 blur-2xl"></div>
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-100 rounded-full opacity-50 blur-2xl"></div>
+                <div className="absolute -top-6 -right-6 w-28 h-28 bg-background2/30 rounded-full blur-2xl"></div>
+                <div className="absolute -bottom-6 -left-6 w-36 h-36 bg-background2/20 rounded-full blur-2xl"></div>
+
+                {/* Floating badge */}
+                <div className="absolute -top-4 -right-4 bg-background2 text-black px-5 py-2 rounded-full font-bold shadow-lg transform -rotate-3">
+                  Featured
+                </div>
               </div>
             </div>
           </Container>
         </FullContainer>
+
+        {/* Blog List and Right Sidebar */}
+        <div id="articles"></div>
 
         {/* Blog List and Right Sidebar */}
         <FullContainer className="mb-12">
@@ -264,7 +414,9 @@ export default function Categories({
 
                             <Link
                               title={item?.title || "Article Link"}
-                              href={`//${sanitizeUrl(item?.title)}`}
+                              href={`/${sanitizeUrl(
+                                item.article_category
+                              )}/${sanitizeUrl(item?.title)}`}
                             >
                               <h3 className="text-2xl font-bold hover:text-gray-600 transition-colors mb-3 line-clamp-2">
                                 {item.title}
@@ -276,7 +428,9 @@ export default function Categories({
                             </p>
 
                             <Link
-                              href={`/${sanitizeUrl(item?.title)}`}
+                              href={`/${sanitizeUrl(
+                                item.article_category
+                              )}/${sanitizeUrl(item?.title)}`}
                               className="mt-auto inline-flex items-center text-black hover:text-background3 font-medium"
                             >
                               Read More
@@ -301,7 +455,7 @@ export default function Categories({
                   </div>
                 ) : (
                   <div className="flex items-center justify-center border px-10 py-40 text-lg bg-gray-200">
-                    No articles found related to {category}
+                    No articles found related to {categoryPage}
                   </div>
                 )}
               </div>
@@ -428,7 +582,8 @@ export async function getServerSideProps({ req, query }) {
 
   const categoryExists = categories?.data[0]?.value?.some(
     (cat) =>
-      cat?.title?.toLowerCase() === categoryPage?.replaceAll("-", " ").toLowerCase()
+      cat?.title?.toLowerCase() ===
+      categoryPage?.replaceAll("-", " ").toLowerCase()
   );
 
   if (!categoryExists) {
