@@ -34,6 +34,7 @@ export default function MustRead({ blog_list = [], imagePath }) {
                       <Link
                         className="w-fit text-sm font-semibold bg-background4 hover:bg-background1 text-black py-2 px-6 rounded-xl transition-colors"
                         href={`/category/${sanitizeUrl(item.article_category) || "#"}`}
+                        title={item.article_category}
                       >
                         {item.article_category}
                       </Link>
@@ -44,6 +45,7 @@ export default function MustRead({ blog_list = [], imagePath }) {
                     <Link
                       href={`/${sanitizeUrl(item?.title)}`}
                       className="group"
+                      title={item?.title}
                     >
                       <h3 className="font-bold text-2xl md:text-4xl lg:text-5xl leading-tight group-hover:text-gray-500 duration-200 transition-colors">
                         {item.title}
@@ -53,6 +55,7 @@ export default function MustRead({ blog_list = [], imagePath }) {
                     <Link
                       href={`/${sanitizeUrl(item?.title)}`}
                       className="group"
+                      title={item?.title}
                     >
                       <h3 className="font-normal text-lg md:text-xl leading-tight group-hover:text-gray-500 duration-200 transition-colors">
                         {item.tagline}

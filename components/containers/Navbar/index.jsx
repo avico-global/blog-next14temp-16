@@ -125,6 +125,7 @@ export default function Navbar({
                         <Link
                           key={index}
                           href={`/category/${encodeURI(sanitizeUrl(category.title))}`}
+                          title={category.title}
                           className="group relative overflow-hidden"
                         >
                           <div className="relative h-48 rounded-2xl overflow-hidden">
