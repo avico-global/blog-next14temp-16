@@ -415,11 +415,9 @@ export default function Categories({
 
                             <Link
                               title={item?.title || "Article Link"}
-                              href={`/${sanitizeUrl(
-                                item.article_category
-                              )}/${sanitizeUrl(item?.title)}`}
+                              href={`/${sanitizeUrl(item?.title)}`}
                             >
-                              <h3 className="text-2xl font-bold hover:text-gray-600 transition-colors mb-3 line-clamp-2">
+                              <h3 className="text-2xl font-bold  hover:text-gray-600 transition-colors mb-3 line-clamp-2">
                                 {item.title}
                               </h3>
                             </Link>
@@ -430,9 +428,7 @@ export default function Categories({
 
                             <Link
                               title={item?.title || "Article Link"}
-                              href={`/${sanitizeUrl(
-                                item.article_category
-                              )}/${sanitizeUrl(item?.title)}`}
+                              href={`/${sanitizeUrl(item?.title)}`}
                               className="mt-auto inline-flex items-center text-black hover:text-background3 font-medium"
                             >
                               Read More
