@@ -137,7 +137,7 @@ export default function Home({
                   <Link
                     key={index}
                     href={`/category/${sanitizeUrl(category.title)}`}
-                    title={category.title}
+                    title={category.title || "Category"}
                     className="relative group overflow-hidden h-66"
                   >
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all rounded-3xl duration-300 z-10" />
@@ -182,7 +182,7 @@ export default function Home({
                           <div className="flex items-center gap-4 text-gray-600 flex-wrap">
                             <Link
                               className="w-fit text-sm font-semibold bg-background4 hover:bg-background1 text-black py-2 px-6 rounded-xl transition-colors"
-                              title={item.article_category}
+                              title={item.article_category || "Featured Article Category"}
                               href={`/category/${
                                 sanitizeUrl(item.article_category) || "#"
                               }`}
@@ -195,7 +195,7 @@ export default function Home({
 
                           <Link
                            href={`/${sanitizeUrl(item?.title)}`}
-                            title={item.title}
+                            title={item.title || "Featured Article Title"}
                             className="group"
                           >
                             <h3 className="font-bold text-2xl md:text-4xl lg:text-5xl leading-tight group-hover:text-gray-500 duration-200 transition-colors">
@@ -205,7 +205,7 @@ export default function Home({
 
                           <Link
                            href={`/${sanitizeUrl(item?.title)}`}
-                            title={item.tagline}
+                            title={item.tagline || "Featured Article Tagline"}
                             className="group"
                           >
                             <h3 className="font-normal text-lg md:text-xl leading-tight group-hover:text-gray-500 duration-200 transition-colors">
@@ -222,7 +222,7 @@ export default function Home({
                         <div className="relative">
                           <Link
                            href={`/${sanitizeUrl(item?.title)}`}
-                            title={item.imageTitle}
+                            title={item.imageTitle || "Featured Article Image"}
                             className="block relative aspect-[3/3] w-full md:w-3/4 mt-0 md:-mt-80 overflow-hidden rounded-2xl group"
                           >
                             <Image

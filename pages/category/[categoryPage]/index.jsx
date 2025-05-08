@@ -252,6 +252,7 @@ export default function Categories({
 
                 <div className="pt-4">
                   <Link
+                    title="Explore Articles"
                     href="#articles"
                     className="inline-flex items-center px-6 py-3 bg-background2 text-black rounded-lg font-medium hover:bg-background2/90 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
@@ -428,6 +429,7 @@ export default function Categories({
                             </p>
 
                             <Link
+                              title={item?.title || "Article Link"}
                               href={`/${sanitizeUrl(
                                 item.article_category
                               )}/${sanitizeUrl(item?.title)}`}

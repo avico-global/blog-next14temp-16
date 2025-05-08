@@ -22,7 +22,7 @@ export default function MostPopular({ blog_list = [], imagePath }) {
             <div key={index} className="relative overflow-hidden group h-full">
               <Link
                 href={`/${sanitizeUrl(item.article_category) || "#"}`}
-                title={item.imageTitle}
+                title={item.imageTitle || "Most Popular Blog Image"}
                 className="relative overflow-hidden w-full"
               >
                 <Image
@@ -41,13 +41,17 @@ export default function MostPopular({ blog_list = [], imagePath }) {
 
               <div className="flex flex-col z-10 justify-end w-full right-0 bg-black/20 group-hover:bg-black/50 transition-all duration-500 md:w-auto gap-5 text-left absolute top-0 h-full text-white p-10 left-0">
                 <Link
+                  title={item.article_category || "Most Popular Blog Category"}
                   className="uppercase font-semibold"
                   href={`/${sanitizeUrl(item.article_category) || "#"}`}
                 >
                   {item.article_category}
                 </Link>
 
-                <Link href={`/${sanitizeUrl(item.article_category) || "#"}`}>
+                <Link
+                  title={item.title || "Most Popular Blog Title"}
+                  href={`/${sanitizeUrl(item.article_category) || "#"}`}
+                >
                   <h3 className="font-bold text-4xl group-hover:underline">
                     {item.title}
                   </h3>
@@ -66,12 +70,12 @@ export default function MostPopular({ blog_list = [], imagePath }) {
               <div key={index} className="grid grid-cols-2 gap-5 group">
                 <Link
                   href={`/${sanitizeUrl(item.article_category) || "#"}`}
-                  title={item.imageTitle}
+                  title={item.imageTitle || "Most Popular Blog Image"}
                   className="relative overflow-hidden w-full h-56"
                 >
                   <Image
                     src={`${imagePath}/${item.image || "no-image.png"}`}
-                    title={item.imageTitle}
+                    title={item.imageTitle || "Most Popular Blog Image"}
                     alt={item.altImage || item.tagline}
                     priority={false}
                     width={298}
@@ -85,13 +89,17 @@ export default function MostPopular({ blog_list = [], imagePath }) {
 
                 <div className="flex flex-col justify-center w-full md:w-auto gap-3 text-left">
                   <Link
+                    title={item.article_category || "Most Popular Blog Category"}
                     className="text-gray-400 uppercase text-sm font-semibold"
                     href={`/${sanitizeUrl(item.article_category) || "#"}`}
                   >
                     {item.article_category}
                   </Link>
 
-                  <Link href={`/${sanitizeUrl(item.article_category) || "#"}`}>
+                  <Link
+                    title={item.title || "Most Popular Blog Title"}
+                    href={`/${sanitizeUrl(item.article_category) || "#"}`}
+                  >
                     <p className="font-bold text-2xl group-hover:underline">
                       {item.title}
                     </p>

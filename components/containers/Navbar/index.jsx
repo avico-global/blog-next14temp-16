@@ -125,7 +125,7 @@ export default function Navbar({
                         <Link
                           key={index}
                           href={`/category/${encodeURI(sanitizeUrl(category.title))}`}
-                          title={category.title}
+                          title={category.title || "Category"}
                           className="group relative overflow-hidden"
                         >
                           <div className="relative h-48 rounded-2xl overflow-hidden">
@@ -215,7 +215,7 @@ export default function Navbar({
                       filteredBlogs.map((item, index) => (
                         <Link
                           key={index}
-                          title={item.title}
+                          title={item.title || "Search Result"}
                           href={`/${sanitizeUrl(item?.title)}`}
                         >
                           <div className="group hover:bg-gradient-to-r hover:from-yellow-50 hover:to-transparent p-4 rounded-2xl transition-all">

@@ -60,7 +60,7 @@ const Logo = ({ logo, imagePath }) => {
 
   return (
     <Link
-      title={`Logo - ${hostName}`}
+      title={`Logo - ${hostName} - ${logoText || "Logo"}`}
       href="/"
       className="flex items-center justify-center mr-10"
     >

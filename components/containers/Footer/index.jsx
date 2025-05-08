@@ -208,7 +208,7 @@ export default function Footer({
                   <Link
                     key={index}
                     href={`/category/${sanitizeUrl(item.title)}`}
-                    title={item.title}
+                    title={item.title || "Category"}
                     className={cn(
                       "block text-white hover:text-white rounded-xl bg-gray-800  hover:bg-gray-700 w-fit py-1 px-4 transition-colors",
                       category === item.title && "text-white"

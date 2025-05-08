@@ -49,7 +49,7 @@ const BlogCard = ({
     >
       {/* Image Container - Left Side */}
       <Link
-        title={imageTitle}
+        title={imageTitle || "Blog Image"}
         href={encodedHref}
         className="relative block overflow-hidden w-1/2 min-w-[200px]"
       >
@@ -68,6 +68,7 @@ const BlogCard = ({
       {/* Content Container - Right Side */}
       <div className="flex flex-col justify-start p-6 space-y-4 w-2/3">
         <Link
+          title={category || "Category"}
           href={encodedHref}
           className={cn(
             "text-normal font-semibold px-6 py-2 rounded-xl w-fit",
@@ -79,7 +80,7 @@ const BlogCard = ({
 
         <Link
           className="font-bold text-xl md:text-2xl leading-snug hover:text-primary transition-colors"
-          title={title}
+          title={title || "Blog Title"}
           href={encodedHref}
         >
           {title}
