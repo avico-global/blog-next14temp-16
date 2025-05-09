@@ -176,7 +176,7 @@ export default function Categories({
           <link rel="publisher" href={`https://${domain}`} />
           <link
             rel="canonical"
-            href={`https://${domain}/${categoryPage}`}
+            href={`https://${domain}/category/${categoryPage}`}
           />
           <meta name="theme-color" content="#008DE5" />
           <link rel="manifest" href="/manifest.json" />
