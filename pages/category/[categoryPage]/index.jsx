@@ -229,7 +229,7 @@ export default function Categories({
           </div>
 
           <Container>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full items-center relative z-10">
               <div className="text-left space-y-6">
                 <div className="inline-flex items-center px-4 py-2 bg-background2/90 text-black rounded-full text-sm font-medium backdrop-blur-sm">
                   <span className="w-2 h-2 bg-black rounded-full mr-2"></span>

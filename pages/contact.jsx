@@ -35,7 +35,6 @@ export default function Contact({
   about_me,
   logo_white,
 }) {
-
   const breadcrumbs = useBreadcrumbs();
 
   return (
@@ -109,14 +108,14 @@ export default function Contact({
             </div>
 
             {/* Contact Form */}
-            <div className="md:col-span-2 bg-white rounded-3xl shadow-xl p-8 mx-auto max-w-[800px] ">
+            <div className="md:col-span-2 bg-white rounded-3xl shadow-[0_0_10px_0_rgba(0,0,0,0.1)] border-2 p-8 mx-auto max-w-[800px] ">
               <form className="space-y-6">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="col-span-2 md:col-span-1">
                     <input
                       type="text"
                       placeholder="First Name"
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-background3 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200"
                       required
                     />
                   </div>
@@ -124,7 +123,7 @@ export default function Contact({
                     <input
                       type="text"
                       placeholder="Last Name"
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+                      className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-background3 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200"
                       required
                     />
                   </div>
@@ -133,27 +132,27 @@ export default function Contact({
                 <input
                   type="email"
                   placeholder="Email Address"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-background3 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200"
                   required
                 />
 
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-background3 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200"
                   required
                 />
 
                 <textarea
                   rows={4}
                   placeholder="Your Message"
-                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-gray-100 focus:border-background3 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200 resize-none"
                   required
                 />
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-background1 to-background3 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary/20 active:translate-y-0"
+                  className="w-full bg-background3 text-black px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-primary/20 active:translate-y-0"
                 >
                   Send Message
                 </button>

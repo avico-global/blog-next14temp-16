@@ -91,8 +91,8 @@ export default function Navbar({
   return (
     <>
       <FullContainer className=" bg-theme">
-        <div className="w-full">
-          <div className="flex items-center justify-between gap-3 mx-auto  p-6 lg:max-w-[1700px]">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="flex items-center justify-between gap-3 mx-auto  p-6 lg:px-0">
             <div className="flex items-center gap-4">
               <Menu
                 onClick={() => setSidebar(true)}
@@ -124,7 +124,9 @@ export default function Navbar({
                       {categories.map((category, index) => (
                         <Link
                           key={index}
-                          href={`/category/${encodeURI(sanitizeUrl(category.title))}`}
+                          href={`/category/${encodeURI(
+                            sanitizeUrl(category.title)
+                          )}`}
                           title={category.title || "Category"}
                           className="group relative overflow-hidden"
                         >
@@ -133,7 +135,9 @@ export default function Navbar({
                             <Image
                               src={`${imagePath}/${category.image}`}
                               alt={category.title || "Category Image"}
-                              title={category.article_category || "Category Image"}
+                              title={
+                                category.article_category || "Category Image"
+                              }
                               fill
                               className="object-cover transform group-hover:scale-110 transition-transform duration-500"
                             />
@@ -190,7 +194,7 @@ export default function Navbar({
                 />
                 <button
                   onClick={handleSearchToggle}
-                  className={`flex items-center justify-center hover:bg-yellow-100  rounded-full transition-all duration-300
+                  className={`flex items-center justify-center  rounded-full transition-all duration-300
                       ${openSearch ? "absolute right-2" : ""}`}
                 >
                   {openSearch ? (

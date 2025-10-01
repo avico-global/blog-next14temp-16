@@ -11,20 +11,24 @@ export default function BlogBannerStyle({ myblog, imagePath }) {
         {/* Background image with gradient overlay */}
         <Image
           src={`${imagePath}/${myblog?.file_name}`}
-          alt={myblog?.value.imageAltText || myblog?.value?.tagline || "No Banner Found"}
+          alt={
+            myblog?.value.imageAltText ||
+            myblog?.value?.tagline ||
+            "No Banner Found"
+          }
           title={myblog?.value.imageTitle || myblog?.value.title}
           priority={true}
           fill={true}
           loading="eager"
           className="-z-10 w-full h-full object-cover absolute top-0"
         />
-        <div 
+        <div
           className="absolute inset-0"
           style={{
             background: `linear-gradient(to bottom, 
               rgba(0, 0, 0, ${myblog?.value?.opacity / 200}),
               rgba(0, 0, 0, ${myblog?.value?.opacity / 100})
-            )`
+            )`,
           }}
         />
 
@@ -33,7 +37,7 @@ export default function BlogBannerStyle({ myblog, imagePath }) {
           <Badge className="mb-6 transform hover:scale-105 transition-transform">
             {myblog?.value?.article_category}
           </Badge>
-          
+
           <h1
             style={{ fontSize: myblog?.value?.titleFontSize || 42 }}
             className="font-bold text-center text-white mb-8 leading-tight max-w-4xl mx-auto animate-fade-in"

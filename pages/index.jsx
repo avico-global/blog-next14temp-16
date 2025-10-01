@@ -124,7 +124,7 @@ export default function Home({
         />
 
         <FullContainer>
-          <Container className="gap-24">
+          <Container className="gap-10 md:gap-24">
             <div className="grid md:grid-cols-2 gap-8 mt-10 w-full">
               <Banner
                 data={banner.value}
@@ -163,8 +163,8 @@ export default function Home({
                 ))}
               </div>
             </div>
-            <div className="relative z-20 w-full mt-28">
-              <h2 className="text-3xl md:text-4xl font-bold text-black px-4 md:px-0 text-left">
+            <div className="relative z-20 w-full mt-0 md:mt-28">
+              <h2 className="text-3xl md:text-4xl font-bold text-black px-0 md:px-4 text-left">
                 Featured Article
               </h2>
             </div>
@@ -182,7 +182,10 @@ export default function Home({
                           <div className="flex items-center gap-4 text-gray-600 flex-wrap">
                             <Link
                               className="w-fit text-sm font-semibold bg-background4 hover:bg-background1 text-black py-2 px-6 rounded-xl transition-colors"
-                              title={item.article_category || "Featured Article Category"}
+                              title={
+                                item.article_category ||
+                                "Featured Article Category"
+                              }
                               href={`/category/${
                                 sanitizeUrl(item.article_category) || "#"
                               }`}
@@ -194,7 +197,7 @@ export default function Home({
                           </div>
 
                           <Link
-                           href={`/${sanitizeUrl(item?.title)}`}
+                            href={`/${sanitizeUrl(item?.title)}`}
                             title={item.title || "Featured Article Title"}
                             className="group"
                           >
@@ -204,7 +207,7 @@ export default function Home({
                           </Link>
 
                           <Link
-                           href={`/${sanitizeUrl(item?.title)}`}
+                            href={`/${sanitizeUrl(item?.title)}`}
                             title={item.tagline || "Featured Article Tagline"}
                             className="group"
                           >
@@ -221,7 +224,7 @@ export default function Home({
                         {/* Image Section */}
                         <div className="relative">
                           <Link
-                           href={`/${sanitizeUrl(item?.title)}`}
+                            href={`/${sanitizeUrl(item?.title)}`}
                             title={item.imageTitle || "Featured Article Image"}
                             className="block relative aspect-[3/3] w-full md:w-3/4 mt-0 md:-mt-80 overflow-hidden rounded-2xl group"
                           >
@@ -321,7 +324,7 @@ export default function Home({
                   "https://instagram.com",
                 ],
               },
-              
+
               {
                 "@type": "ItemList",
                 url: `https://${domain}`,
