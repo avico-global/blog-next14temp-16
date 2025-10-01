@@ -10,7 +10,7 @@ export default function Banner({ image, data }) {
         style={{
           backgroundColor: `rgba(0, 0, 0, ${data?.opacity / 30})`,
           color: data.textColor || "white",
-          borderRadius:"28px",
+          borderRadius: "28px",
         }}
       >
         <Image
@@ -33,11 +33,11 @@ export default function Banner({ image, data }) {
                (max-width: 3840px) 3840px,
                100vw"
         />
-        
+
         <div className="absolute bottom-8 left-8 text-left z-10">
           <h1
             style={{ fontSize: data.titleFontSize || 48 }}
-            className="font-bold capitalize"
+            className="font-bold capitalize leading-snug"
           >
             {data.title}
           </h1>

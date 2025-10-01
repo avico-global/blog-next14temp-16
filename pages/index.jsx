@@ -171,7 +171,7 @@ export default function Home({
             {blog_list?.map(
               (item, index) =>
                 item.isFeatured && (
-                  <div key={index} className="relative py-20 ">
+                  <div key={index} className="relative py-5 md:py-20">
                     {/* Background accent */}
                     <div className="absolute right-0 top-0 w-full h-full bg-theme  " />
 
